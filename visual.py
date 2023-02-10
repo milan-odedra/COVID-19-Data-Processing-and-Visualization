@@ -33,17 +33,18 @@ geo_df.plot(edgecolor='white', linewidth=1, color='lightblue')
 # Next, we need to ensure that our data matches with the country codes. 
 codes = pd.read_csv("Geo\\all.csv")
 
-covidcountry = pd.merge(left=codes,right=covid_df,how="left",left_on="name",right_on="Country/Region")
+covidcountry = pd.merge(left=codes,right=covid_df,how="inner",left_on="name",right_on="Country/Region")
 print(covidcountry)
+
 #mergedata = mergedata.rename(columns={'name': 'country','alpha-2': 'iso2_code','alpha-3': 'iso3_code'})
-mergedata = pd.merge(left=geo_df, right=covidcountry, how='left', left_on='country_code', right_on='alpha-3')
+mergedata = pd.merge(left=geo_df, right=covidcountry, how='inner', left_on='country_code', right_on='alpha-3')
 print(mergedata)
 # There are some countries for which the converter could not find a country code. 
 # We will drop these countries.
 # geo_df = geo_df.drop(geo_df.loc[geo_df['iso2_code'] == 'NULL'].index)
+print(geo_df.loc[geo_df['country_code'] == 'NULL'])
 
-
-# print(mergedata)
+# # print(mergedata)
 # title = 'Daily COVID-19 deaths'
 # col = 'Recovered'
 # source = 'none'
@@ -66,5 +67,5 @@ print(mergedata)
 
 # plt.show()
 
-#TTTTTTTTTTTTTTTTTTOOOOOOOOOOOOOOOOOOOOOODDDDDDDDDDDDDDDDDDDDDDDDOOOOOOOOOOOOOOOOOOOOOOOOO:
-#First merge all.csv and geo_df and then covid data
+# #TTTTTTTTTTTTTTTTTTOOOOOOOOOOOOOOOOOOOOOODDDDDDDDDDDDDDDDDDDDDDDDOOOOOOOOOOOOOOOOOOOOOOOOO:
+# #First merge all.csv and geo_df and then covid data
