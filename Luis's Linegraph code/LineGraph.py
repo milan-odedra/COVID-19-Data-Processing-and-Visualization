@@ -1,5 +1,5 @@
 import pandas as pd
 
-dayVals=pd.read_csv("day_wise.csv")
+dayVals=pd.read_csv("Dataset\Covid-19 Dataset\day_wise.csv")
 
-print(df.to_string())
+print(dayVals.to_string())
