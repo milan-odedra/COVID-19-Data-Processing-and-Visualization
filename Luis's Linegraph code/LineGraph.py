@@ -10,7 +10,6 @@ def dayAvg(x):
     Avg=0
     print(x)
 
-
 #Main code
 
 
@@ -25,10 +24,19 @@ Date=dayVals["Date"]
 # print (UK)
 # print (notUK)
 #Separates the dates
+time=1
+Timelist=[]
+# An attempt to plot the graph
+x=0
+with open ("Dataset\Covid-19 Dataset\\full_grouped.csv","r") as d:
+    lists=csv.reader(d)
+    Timelist.append(list[0])
+
 for x in Date:
-    print(x)
-    time=1
-    if time==x:
+    # print(x)
+    
+    if time!=x:
+        time=x
         #Puts the data with the corresponding date to CurrDate
         CurrDate=dayVals[(dayVals["Date"]==(x))]
         #Finds the mean of each column for that date
@@ -39,16 +47,14 @@ for x in Date:
         newCases=(CurrDate["New cases"]).mean()
         newDeaths=(CurrDate["New deaths"]).mean()
         newRecovered=(CurrDate["New recovered"]).mean()
-        # print(Confirmed)
-# x=0
-# with open ("Dataset\Covid-19 Dataset\\full_grouped.csv","r") as d:
-#     lists=csv.reader(d)
-#     for line in lists:
-#         if line[0]!=x:
-#             x=line[0]
-#             print(x)
+        Timelist.append([time,Confirmed,Deaths,Recovered,Active,newCases,newDeaths,newRecovered])
+
+X=len(Timelist)
+print(Timelist)
 
 #Plots the UK and notUK data
-# UK.plot()
-# notUK.plot()
-# plt.show()
+for i in range(len(Timelist[0])):
+    plt.plot(X,[pt[i]for pt in Timelist]),lebel='id %s'%i)
+UK.plot()
+notUK.plot()
+plt.show()
