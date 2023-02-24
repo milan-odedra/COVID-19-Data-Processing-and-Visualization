@@ -44,28 +44,28 @@ print(mergedata)
 # geo_df = geo_df.drop(geo_df.loc[geo_df['iso2_code'] == 'NULL'].index)
 print(geo_df.loc[geo_df['country_code'] == 'NULL'])
 
-# # print(mergedata)
-# title = 'Daily COVID-19 deaths'
-# col = 'Recovered'
-# source = 'none'
-# vmin = mergedata[col].min()
-# vmax = mergedata[col].max()
-# cmap = 'viridis'
+# print(mergedata)
+title = 'Daily COVID-19 deaths'
+col = 'Recovered'
+source = 'none'
+vmin = mergedata[col].min()
+vmax = mergedata[col].max()
+cmap = 'viridis'
 
-# fig, ax = plt.subplots(1, figsize=(20, 8))
+fig, ax = plt.subplots(1, figsize=(20, 8))
 
-# ax.axis('off')
-# mergedata.plot(column=col,edgecolor='0.8', ax=ax, linewidth=1, cmap=cmap)
-# ax.set_title(title, fontdict={'fontsize': '25', 'fontweight': '3'})
-# ax.annotate(source, xy=(0.1, .08), xycoords='figure fraction', horizontalalignment='left', 
-#             verticalalignment='bottom', fontsize=10)
+ax.axis('off')
+mergedata.plot(column=col,edgecolor='0.8', ax=ax, linewidth=1, cmap=cmap)
+ax.set_title(title, fontdict={'fontsize': '25', 'fontweight': '3'})
+ax.annotate(source, xy=(0.1, .08), xycoords='figure fraction', horizontalalignment='left', 
+            verticalalignment='bottom', fontsize=10)
             
-# sm = plt.cm.ScalarMappable(norm=plt.Normalize(vmin=vmin, vmax=vmax), cmap=cmap)
-# sm._A = []
-# cbaxes = fig.add_axes([0.15, 0.25, 0.01, 0.4])
-# cbar = fig.colorbar(sm, cax=cbaxes)
+sm = plt.cm.ScalarMappable(norm=plt.Normalize(vmin=vmin, vmax=vmax), cmap=cmap)
+sm._A = []
+cbaxes = fig.add_axes([0.15, 0.25, 0.01, 0.4])
+cbar = fig.colorbar(sm, cax=cbaxes)
 
-# plt.show()
+plt.show()
 
 # #TTTTTTTTTTTTTTTTTTOOOOOOOOOOOOOOOOOOOOOODDDDDDDDDDDDDDDDDDDDDDDDOOOOOOOOOOOOOOOOOOOOOOOOO:
 # #First merge all.csv and geo_df and then covid data
