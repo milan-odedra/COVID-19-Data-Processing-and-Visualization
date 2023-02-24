@@ -4,13 +4,16 @@ import pandas as pd
 import matplotlib.pyplot as plt
 # This puts the data from day_wise file into the dayVals variable
 dayVals=pd.read_csv("Dataset\Covid-19 Dataset\\full_grouped.csv")
+#These separate the data in the UK and not in the UK.
 UK=dayVals[(dayVals["Country/Region"]==("United Kingdom"))]
+notUK=dayVals[(dayVals["Country/Region"]!=("United Kingdom"))]
 print (UK)
+print (notUK)
 
 
 #print(dayVals.to_string())
 # print(dayVals)
 
-dayVals.plot()
+UK.plot()
+notUK.plot()
 plt.show()
-print(UK)
