@@ -38,6 +38,8 @@ state_geo = f"{url}/us-states.json"
 state_unemployment = f"{url}/US_Unemployment_Oct2012.csv"
 state_data = pd.read_csv(state_unemployment)
 print(state_data)
+
+state_data = pd.read_csv("US_Unemployment_Oct2012.csv")
 state_geo = pd.read_json("Geo2\\Us-State.json")
 
 folium.Choropleth(
