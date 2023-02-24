@@ -11,5 +11,9 @@ confirmed = confirmed.groupby(confirmed['Country/Region']).aggregate('sum')
 deaths = confirmed.groupby(deaths['Country/Region']).aggregate('sum')
 recoveries = confirmed.groupby(recoveries['Country/Region']).aggregate('sum')
 
+confirmed = confirmed.T
+deaths = deaths.T
+recoveries = recoveries.T 
+
 print(confirmed)
 
