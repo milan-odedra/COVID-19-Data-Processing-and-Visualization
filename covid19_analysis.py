@@ -77,8 +77,9 @@ hospitalization_needed = confirmed.copy()
 
 
 # Visualization
-    
-countries = ['Italy', 'Austria', 'US', 'China', 'India', 'France', 'Spain']
+# List of countries data
+  
+countries = ['Italy', 'Nepal', 'US', 'China', 'India', 'France', 'United Kingdom']
 
 ax = plt.subplot()
 ax.set_facecolor('black')
