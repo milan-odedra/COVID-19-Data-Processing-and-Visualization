@@ -31,7 +31,7 @@ new_cases = confirmed.copy()
 for day in range(1,  len(confirmed)):
     new_cases.iloc[day] = confirmed.iloc[day] - confirmed.iloc[day - 1]
 
-# Prints the new cases in the space of 10 days
+# New and confirmed cases
 #print(new_cases.tail(10))
 #print(confirmed.tail(10))
 
@@ -42,6 +42,7 @@ growth_rate = confirmed.copy()
 for day in range(1, len(confirmed)):
     growth_rate.iloc[day] = (new_cases.iloc[day] / confirmed.iloc[day - 1]) * 100
 
+# Percentage of growth rate
 #print(growth_rate.tail(10))
 
 # Active Cases
@@ -50,11 +51,29 @@ active_cases = confirmed.copy()
 for day in range(0, len(confirmed)):
     active_cases.iloc[day] = confirmed.iloc[day] - deaths.iloc[day] - recoveries.iloc[day]
 
-
+# 
 overall_growth_rate = confirmed.copy()
 
 for day in range(1, len(confirmed)):
     overall_growth_rate.iloc[day] = ((active_cases.iloc[day] - active_cases.iloc[day - 1]) / active_cases.iloc[day-1]) * 100
 
-print(overall_growth_rate.tail(10))
+# Active cases compared to growth rate
+#print(overall_growth_rate.tail(10))      # Add specfic countries data
 
+# Death per confirmed infections 
+death_rate = confirmed.copy()
+
+for day in range(0, len(confirmed)):
+    death_rate.iloc[day] = (deaths.iloc[day] / confirmed.iloc[day]) * 100
+
+
+hospitalization_rate_estimate = 0.05        # change this estimate
+
+hospitalization_needed = confirmed.copy()
+
+for day in range(0, len(confirmed)):
+    hospitalization_needed.iloc[day] = active_cases * hospitalization_rate_estimate
+
+
+
+    
