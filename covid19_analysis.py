@@ -22,6 +22,13 @@ confirmed = confirmed.T
 deaths = deaths.T
 recoveries = recoveries.T 
 
+new_cases = confirmed.copy()
+
+for day in range(1,  len(confirmed)):
+    new_cases.iloc[day] = confirmed.iloc[day] - confirmed.iloc[day - 1]
+
+print(new_cases.tail(10))
+print(confirmed.tail(10))
 
 
 
