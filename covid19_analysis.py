@@ -2,7 +2,7 @@
 
 # Import Libraries
 import pandas as pd
-import matplotlib as plt
+import matplotlib.pyplot as plt
 
 # Read data files
 confirmed = pd.read_csv('covid19_confirmed.csv')
@@ -58,7 +58,7 @@ for day in range(1, len(confirmed)):
     overall_growth_rate.iloc[day] = ((active_cases.iloc[day] - active_cases.iloc[day - 1]) / active_cases.iloc[day-1]) * 100
 
 # Active cases compared to growth rate
-#print(overall_growth_rate.tail(10))      # Add specfic countries data
+print(overall_growth_rate.tail(10))      # Add specfic countries data
 
 # Death per confirmed infections 
 death_rate = confirmed.copy()
@@ -69,11 +69,27 @@ for day in range(0, len(confirmed)):
 
 hospitalization_rate_estimate = 0.05        # change this estimate
 
+# Show what countries need the most hospitlsation
 hospitalization_needed = confirmed.copy()
 
-for day in range(0, len(confirmed)):
-    hospitalization_needed.iloc[day] = active_cases * hospitalization_rate_estimate
+#for day in range(0, len(confirmed)):
+#    hospitalization_needed.iloc[day] = active_cases * hospitalization_rate_estimate
 
 
-
+# Visualization
     
+countries = ['Italy', 'Austria', 'US', 'China', 'India', 'France', 'Spain']
+
+ax = plt.subplot()
+ax.set_facecolor('black')
+ax.figure.set_facecolor('#121212')
+ax.tick_params(axis='x', colors='white')
+ax.tick_params(axis='y', colors='white')
+ax.set_title('Covd-19 - Total Confirmed Cases by Country', color='white')
+
+
+for country in countries:
+    confirmed[country].plot(label=country)
+
+plt.legend(loc='upper left')
+plt.show()
