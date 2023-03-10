@@ -24,9 +24,11 @@ recoveries = recoveries.T
 
 new_cases = confirmed.copy()
 
+# A day subtracted by previous day giving difference in new cases
 for day in range(1,  len(confirmed)):
     new_cases.iloc[day] = confirmed.iloc[day] - confirmed.iloc[day - 1]
 
+# Prints the cases in the space of 10 days
 print(new_cases.tail(10))
 print(confirmed.tail(10))
 
