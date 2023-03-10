@@ -3,14 +3,14 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import csv
-
+import numpy as np
 #Functions
 #This calculates the average of the day in the csv file.
 def dayAvg(x):
     Avg=0
     print(x)
 
-#Main code
+###Main code###
 
 
 # This puts the data from day_wise file into the dayVals variable
@@ -31,30 +31,62 @@ x=0
 with open ("Dataset\Covid-19 Dataset\\full_grouped.csv","r") as d:
     lists=csv.reader(d)
     Timelist.append(list[0])
-
+Seconds=[]
+Confirmed=[]
+Deaths=[]
+Recovered=[]
+Active=[]
+newCases=[]
+newDeaths=[]
+newRecovered=[]
 for x in Date:
     # print(x)
     
     if time!=x:
         time=x
+        #Converts time to a readable format that can be plotted by matplotlib
+        Seconds.append(np.datetime64(x))
         #Puts the data with the corresponding date to CurrDate
         CurrDate=dayVals[(dayVals["Date"]==(x))]
         #Finds the mean of each column for that date
-        Confirmed=(CurrDate["Confirmed"]).mean()
-        Deaths=(CurrDate["Deaths"]).mean()
-        Recovered=(CurrDate["Recovered"]).mean()
-        Active=(CurrDate["Active"]).mean()
-        newCases=(CurrDate["New cases"]).mean()
-        newDeaths=(CurrDate["New deaths"]).mean()
-        newRecovered=(CurrDate["New recovered"]).mean()
-        Timelist.append([time,Confirmed,Deaths,Recovered,Active,newCases,newDeaths,newRecovered])
-
-X=len(Timelist)
-print(Timelist)
-
+        Confirmed.append((CurrDate["Confirmed"]).mean())
+        Deaths.append((CurrDate["Deaths"]).mean())
+        Recovered.append((CurrDate["Recovered"]).mean())
+        Active.append((CurrDate["Active"]).mean())
+        newCases.append((CurrDate["New cases"]).mean())
+        newDeaths.append((CurrDate["New deaths"]).mean())
+        newRecovered.append((CurrDate["New recovered"]).mean())
+        # Timelist.append([Confirmed,Deaths,Recovered,Active,newCases,newDeaths,newRecovered])
+# print(Seconds)
+# #Creates a random number for each date, Checks if the dates work
+# X = np.random.randn(len(Seconds))
+# fig, ax=plt.subplots()
+# ax.plot(Seconds,X)
+# X=len(Timelist)
 #Plots the UK and notUK data
-for i in range(len(Timelist[0])):
-    plt.plot(X,[pt[i]for pt in Timelist]),lebel='id %s'%i)
-UK.plot()
-notUK.plot()
+fig, ax=plt.subplots(2,1)
+fig.suptitle("Covid-19 cases")
+ax[1].set_title("Covid-19 cases in the world")
+ax[1].set_xlabel("Dates")
+ax[1].set_ylabel("Number of people")
+ax[1].plot(Seconds,Confirmed,label="Confirmed")
+ax[1].plot(Seconds,Deaths,label="Deaths")
+ax[1].plot(Seconds,Recovered,label="Recovered")
+ax[1].plot(Seconds,Active,label="Active")
+ax[1].plot(Seconds,newCases,label="New Cases")
+ax[1].plot(Seconds,newDeaths,label="New Deaths")
+ax[1].plot(Seconds,newRecovered,label="New Recovered")
+ax[1].legend()
+ax[0].set_title("Covid-19 cases in the UK")
+ax[0].set_xlabel("Dates")
+ax[0].set_ylabel("Number of people")
+ax[0].plot(Seconds,UK["Confirmed"],label="Confirmed")
+ax[0].plot(Seconds,UK["Deaths"],label="Deaths")
+ax[0].plot(Seconds,UK["Recovered"],label="Recovered")
+ax[0].plot(Seconds,UK["Active"],label="Active")
+ax[0].plot(Seconds,UK["New cases"],label="New Cases")
+ax[0].plot(Seconds,UK["New deaths"],label="New Deaths")
+ax[0].plot(Seconds,UK["New recovered"],label="New Recovered")
+ax[0].legend()
+plt.tight_layout()
 plt.show()
