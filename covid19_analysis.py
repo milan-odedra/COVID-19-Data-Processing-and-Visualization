@@ -22,6 +22,7 @@ confirmed = confirmed.T
 deaths = deaths.T
 recoveries = recoveries.T 
 
+# create copy to manipulate data
 new_cases = confirmed.copy()
 
 # A day subtracted by previous day giving difference in new cases
@@ -29,10 +30,16 @@ for day in range(1,  len(confirmed)):
     new_cases.iloc[day] = confirmed.iloc[day] - confirmed.iloc[day - 1]
 
 # Prints the cases in the space of 10 days
-print(new_cases.tail(10))
-print(confirmed.tail(10))
+#print(new_cases.tail(10))
+#print(confirmed.tail(10))
 
+growth_rate = confirmed.copy()
 
+# new cases divided by previous day cases showing percentage increase/decrease from day before
+for day in range(1, len(confirmed)):
+    growth_rate.iloc[day] = (new_cases.iloc[day] / confirmed.iloc[day - 1]) * 100
+
+print(growth_rate.tail(10))
 
 # print(deaths)
 # print(recoveries)
