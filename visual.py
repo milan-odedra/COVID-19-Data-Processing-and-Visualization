@@ -1,80 +1,65 @@
 import pandas as pd
-import seaborn as sns
 import matplotlib.pyplot as plt
 import geopandas as gpd
-from datetime import datetime, timedelta
 
-# data =  pd.read_csv('Data\\full_grouped.csv', sep=",")
-# data = data.rename(columns={'WHO Region': 'WHORegion','Country/Region': 'country'})
-# data_german = data.query('country == "Germany"')
-# data_UK = data.query('country == "United Kingdom"')
-# print(data_german)
-# plt.plot(data_german["Date"], data_german["Confirmed"], label="German")
-# plt.plot(data_UK["Date"], data_UK["Confirmed"], label="UK")
 
 # Reading files
-covid_df =  pd.read_csv('Data\\full_grouped.csv', sep=",")
-codes = pd.read_csv("Geo\\all.csv")
+covid_df =  pd.read_csv('Data\\country_wise_latest.csv', sep=",").iloc[:,:3]
 
-#Which Country names are different
-codes["name"]
-covid_df["Country/Region"]
-
-
-# covid_df = pd.DataFrame(covid)
-# covid_df.head(3)
-# print(covid_df)
-
-SHAPEFILE = 'Geo\\ne_10m_admin_0_countries.shp'
+codes = pd.read_csv("Geo\\all.csv").iloc[:,:4]
 # Read shapefile using Geopandas
+SHAPEFILE = 'Geo\\ne_10m_admin_0_countries.shp'
 geo_df = gpd.read_file(SHAPEFILE)[['ADMIN', 'ADM0_A3', 'geometry']]
-#print(geo_df)
+
 # Rename columns.
 geo_df.columns = ['country', 'country_code', 'geometry']
-# print(geo_df.head(3))
+
 # Drop row for 'Antarctica'. It takes a lot of space in the map and is not of much use
 geo_df = geo_df.drop(geo_df.loc[geo_df['country'] == 'Antarctica'].index)
-# Print the map
-geo_df.plot(edgecolor='white', linewidth=1, color='lightblue')
+
+#Change country code because all.csv and country_...csv have it different
+geo_df.loc[14, "country_code"] = "SSD"
 
 # Next, we need to ensure that our data matches with the country codes. 
-
-
-covidcountry = pd.merge(left=codes,right=covid_df,how="inner",left_on="name",right_on="Country/Region")
-
-covidcountryNotMatched = pd.merge(left=codes,right=covid_df,how="outer",left_on="name",right_on="Country/Region")
-print(covidcountryNotMatched)
-
-#mergedata = mergedata.rename(columns={'name': 'country','alpha-2': 'iso2_code','alpha-3': 'iso3_code'})
+covidcountry = pd.merge(left=codes,right=covid_df,how="left",left_on="name",right_on="Country/Region")
+print(covidcountry.loc[covidcountry['name'] == 'Turkmenistan', 'Deaths'].iloc[0])
 mergedata = pd.merge(left=geo_df, right=covidcountry, how='inner', left_on='country_code', right_on='alpha-3')
-#print(mergedata)
-# There are some countries for which the converter could not find a country code. 
-# We will drop these countries.
-# geo_df = geo_df.drop(geo_df.loc[geo_df['iso2_code'] == 'NULL'].index)
-#print(geo_df.loc[geo_df['country_code'] == 'NULL'])
 
-# print(mergedata)
-title = 'Daily COVID-19 deaths'
-col = 'Recovered'
-source = 'none'
+# Preparing to plot
+title = 'Total COVID-19 deaths'
+col = 'Deaths'
+source = 'Kaggle'
 vmin = mergedata[col].min()
 vmax = mergedata[col].max()
 cmap = 'viridis'
 
-fig, ax = plt.subplots(1, figsize=(20, 8))
+plt.figure(figsize=(16, 8))
+ax = plt.gca()
 
-ax.axis('off')
-mergedata.plot(column=col,edgecolor='0.8', ax=ax, linewidth=1, cmap=cmap)
+ax.axis("off")
 ax.set_title(title, fontdict={'fontsize': '25', 'fontweight': '3'})
 ax.annotate(source, xy=(0.1, .08), xycoords='figure fraction', horizontalalignment='left', 
             verticalalignment='bottom', fontsize=10)
-            
+
+# Set the color of missing countries to black
+mergedata.plot(column=col, edgecolor='none', ax=ax, linewidth=1, cmap=cmap, missing_kwds={'color': 'black'})
+
+# Add a custom legend
+handles = [plt.Rectangle((0,0),1,1, color='black', ec="k", lw=0.7)]
+labels = ['Missing from data set']
+ax.legend(handles, labels, loc='lower right', framealpha=1)
+          
 sm = plt.cm.ScalarMappable(norm=plt.Normalize(vmin=vmin, vmax=vmax), cmap=cmap)
 sm._A = []
-cbaxes = fig.add_axes([0.15, 0.25, 0.01, 0.4])
-cbar = fig.colorbar(sm, cax=cbaxes)
+cbaxes = ax.figure.add_axes([0.15, 0.25, 0.01, 0.4])
+cbar = ax.figure.colorbar(sm, cax=cbaxes)
 
+#Showing the plot
 plt.show()
 
-# #TTTTTTTTTTTTTTTTTTOOOOOOOOOOOOOOOOOOOOOODDDDDDDDDDDDDDDDDDDDDDDDOOOOOOOOOOOOOOOOOOOOOOOOO:
-# #First merge all.csv and geo_df and then covid data
+mergedata.drop('geometry', axis=1).to_csv('mergedata.csv', index=False)
+
+
+
+
+
