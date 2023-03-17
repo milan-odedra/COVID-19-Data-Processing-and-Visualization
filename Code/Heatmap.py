@@ -2,7 +2,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import geopandas as gpd
 
-
 # Reading files
 covid_df =  pd.read_csv('Data\\country_wise_latest.csv', sep=",").iloc[:,:3]
 
@@ -14,10 +13,10 @@ geo_df = gpd.read_file(SHAPEFILE)[['ADMIN', 'ADM0_A3', 'geometry']]
 # Rename columns.
 geo_df.columns = ['country', 'country_code', 'geometry']
 
-# Drop row for 'Antarctica'. It takes a lot of space in the map and is not of much use
+# Drop row for 'Antarctica'. It takes a lot of space in the map and is not in the dataset
 geo_df = geo_df.drop(geo_df.loc[geo_df['country'] == 'Antarctica'].index)
 
-#Change country code because all.csv and country_...csv have it different
+# Change country code because all.csv and country_wise_latest.csv have it different
 geo_df.loc[14, "country_code"] = "SSD"
 
 # Next, we need to ensure that our data matches with the country codes. 
@@ -56,8 +55,6 @@ cbar = ax.figure.colorbar(sm, cax=cbaxes)
 
 #Showing the plot
 plt.show()
-
-mergedata.drop('geometry', axis=1).to_csv('mergedata.csv', index=False)
 
 
 
