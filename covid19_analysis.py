@@ -79,18 +79,21 @@ hospitalization_needed = confirmed.copy()
 # Visualization
 # List of countries data
   
-countries = ['Italy', 'Nepal', 'US', 'China', 'India', 'France', 'United Kingdom']
+countries = ['Italy', 'Nepal', 'US', 'China', 'India', 'France', 'Japan']
 
 ax = plt.subplot()
-ax.set_facecolor('black')
+ax.set_facecolor('white')
 ax.figure.set_facecolor('#121212')
 ax.tick_params(axis='x', colors='white')
 ax.tick_params(axis='y', colors='white')
 ax.set_title('Covd-19 - Total Confirmed Cases by Country', color='white')
 
 
+# Plots confirmed cases of countries  
 for country in countries:
     confirmed[country].plot(label=country)
 
 plt.legend(loc='upper left')
 plt.show()
+
+
