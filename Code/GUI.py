@@ -34,7 +34,6 @@ cstatIMG = ImageTk.PhotoImage(statp)
 # specify the path to the Python file you want to run
 mapPath = "Code/Heatmap.py"
 
-
 # Create buttons
 button_a = tk.Button(window, font=('Arial', 16), bg='#F5F5F5', fg='#4B4B4B',text="Covid World heat-map ",image=globeIMG, compound=tk.RIGHT, command=lambda: os.system(f"python {mapPath}"))
 button_b = tk.Button(window, font=('Arial', 16), bg='#F5F5F5', fg='#4B4B4B',text="Covid Graph - UK vs World ",image=graphIMG,compound=tk.RIGHT,command=lambda: button_click("B"))
