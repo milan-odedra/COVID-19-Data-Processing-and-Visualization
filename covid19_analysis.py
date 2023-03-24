@@ -82,7 +82,7 @@ hospitalization_needed = confirmed.copy()
 countries = ['Italy', 'Nepal', 'US', 'China', 'India', 'France', 'Japan']
 
 ax = plt.subplot()
-ax.set_facecolor('white')
+ax.set_facecolor('black')
 ax.figure.set_facecolor('#121212')
 ax.tick_params(axis='x', colors='white')
 ax.tick_params(axis='y', colors='white')
@@ -95,5 +95,31 @@ for country in countries:
 
 plt.legend(loc='upper left')
 plt.show()
+
+# Prouduce a simulated covid growth rate
+simulated_growth_rate = 0.10
+
+dates = pd.date_range(start='3/23/2023', periods=40, freq='D')
+dates = pd.Series(dates).dt.strftime('%m/%d/%Y')
+
+simulated = confirmed.copy()
+simulated = simulated.append(pd.DataFrame(index=dates))
+
+
+for day in range(len(confirmed), len(confirmed)+40):
+    simulated.iloc[day] = simulated.iloc[day - 1] * (1+ simulated_growth_rate)
+
+ax = plt.subplot(facecolor='black')
+ax.figure.set_facecolor('#121212')
+ax.tick_params(axis='x', colors='white')
+ax.tick_params(axis='y', colors='white')
+ax.set_title('Covid 19 - Growth Rate Simulated', color='white')
+simulated['US'].plot(color='white')
+plt.show()
+
+print(simulated)
+
+
+
 
 
