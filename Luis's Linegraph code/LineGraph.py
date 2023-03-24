@@ -1,5 +1,4 @@
 ##    What to do:     ##
-#-Plot the reigons 2
 #-Plot covid lockdown timeline in the UK 3
 #Remember to download the "pandas" library before running code if it isn't installed yet.
 #Use "pip install pandas" in the cmd before hand. Do the same for matplotlib.
@@ -72,7 +71,6 @@ def plotGraph(Name):
     fig0.show()
     fig1.show()
     input("To close the figure, input any key: ")
-
 ###################### Main code ###########################
 
 # This puts the data from day_wise file into the dayVals variable
@@ -92,11 +90,6 @@ SouthEastAsia=dayVals[(dayVals["WHO Region"]==("South-East Asia"))]
 # print (UK)
 # print (notUK)
 ######################################
-
-#Puts the data from the list into reigionList and returns them into these variables
-Confirmed, Deaths, Recovered, Active=regionList(allRegions)
-
-######################################
 #Separates the dates
 time=1
 #Used purely for the graph (the X axis)
@@ -107,6 +100,36 @@ for x in dayVals["Date"]:
         time=x
         #Converts time to a readable format that can be plotted by matplotlib
         Seconds.append(np.datetime64(x))
+######################################
+##########Temporary menu##############
+######################################
+#Puts the data from the list into reigionList and returns them into these variables
+leave=0
+while leave!=True:
+    Region=input("1:All Regions\n2:Eastern Mediterranean\n3:Europe\n4:Africa\n5:Americas\n6:Western Pacific\n7:South-East Asia\nQ:Quit\nPlease enter a number corresponding to the Region in the list: ")
+    if Region=='1':
+        Confirmed, Deaths, Recovered, Active=regionList(allRegions)
+        plotGraph("the world")
+    elif Region=='2':
+        Confirmed, Deaths, Recovered, Active=regionList(eastMed)
+        plotGraph("Eastern Mediterranean")
+    elif Region=='3':
+        Confirmed, Deaths, Recovered, Active=regionList(Euro)
+        plotGraph("Europe")
+    elif Region=='4':
+        Confirmed, Deaths, Recovered, Active=regionList(Africa)
+        plotGraph("Africa")
+    elif Region=='5':
+        Confirmed, Deaths, Recovered, Active=regionList(America)
+        plotGraph("Americas")
+    elif Region=='6':
+        Confirmed, Deaths, Recovered, Active=regionList(WstPacific)
+        plotGraph("Western Pacific")
+    elif Region=='7':
+        Confirmed, Deaths, Recovered, Active=regionList(SouthEastAsia)
+        plotGraph("South-East Asia")
+    elif Region=='Q':
+        leave=1
 ########################################
 # print(Seconds)
 # #Creates a random number for each date, Checks if the dates work
