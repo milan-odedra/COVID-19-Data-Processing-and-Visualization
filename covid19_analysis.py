@@ -96,6 +96,12 @@ for country in countries:
 plt.legend(loc='upper left')
 plt.show()
 
+esimated_death_rate = 0.025
+
+print
+
+print(deaths['Italy'].tail()[4])
+
 # Prouduce a simulated covid growth rate
 simulated_growth_rate = 0.10
 
