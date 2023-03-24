@@ -16,7 +16,7 @@ def dayAvg(x):
 
 def regionList(List):
     """This puts the separated data from .csv file into a list with their day mean and returns this"""
-    #Seconds is the date
+    highestDate=1
     Confirmed=[]
     Deaths=[]
     Recovered=[]
@@ -27,8 +27,8 @@ def regionList(List):
     for x in dayVals["Date"]:
         # print(x)
         
-        if time!=x:
-            time=x
+        if highestDate!=x:
+            highestDate=x
             #Puts the data with the corresponding date to CurrDate
             CurrDate=dayVals[(List["Date"]==(x))]
             #Finds the mean of each column for that date

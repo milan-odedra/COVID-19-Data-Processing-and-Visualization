@@ -76,7 +76,7 @@ for x in Date:
 # fig, ax=plt.subplots()
 # ax.plot(Seconds,X)
 #Plots the UK and notUK data on the same figure
-fig, ax=plt.subplots(2)
+fig, ax=plt.subplots(2,figsize=(10,5))
 fig.suptitle("Covid-19 cases")
 ax[1].set_title("Covid-19 cases in the world")
 ax[1].set_xlabel("Dates")
