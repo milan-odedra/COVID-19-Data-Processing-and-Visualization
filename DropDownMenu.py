@@ -5,7 +5,7 @@ import csv
 window = tkinter.Tk()
 clicked = tkinter.StringVar()
 
-with open('/Users/searsamandari/Desktop/2022-4216COMP-Team-6/Dataset/Covid-19 Dataset/country_wise_latest.csv', 'r') as x:
+with open('Dataset\Covid-19 Dataset\\country_wise_latest.csv', 'r') as x:
     read = csv.reader(x)
     header = next(read)
     countryStatistics = {}
@@ -63,9 +63,7 @@ whoRegionLabel.pack()
 
 def displayData():
     country = clicked.get()
-    print(country)
     data = countryStatistics[country]
-    print(data)
 
     confirmedLabel.config(text=f"Confirmed: {data['Confirmed']}")
     deathsLabel.config(text=f"Deaths: {data['Deaths']}")
@@ -81,8 +79,9 @@ def displayData():
     weekChangeLabel.config(text=f"1 week change: {data['1 week change']}")
     weekPercentIncreaseLabel.config(text=f"1 week % increase: {data['1 week % increase']}")
     whoRegionLabel.config(text=f"WHO Region: {data['WHO Region']}")
-    
-      
+
+
+
 button = tkinter.Button(window, text="Display Data", command=displayData)
 button.pack()
 window.mainloop()
