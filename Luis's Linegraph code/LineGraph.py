@@ -41,7 +41,6 @@ def regionList(RegionList):
 def plotGraph(Name):
     """Plots the graph using the inputs and then shows them"""
     fig0, ax0=plt.subplots(figsize=(10,5))
-    fig0.suptitle("Covid-19 cases")
     ax0.set_title("Covid-19 cases in "+Name)
     ax0.set_xlabel("Dates")
     ax0.set_ylabel("Number of people")
@@ -107,7 +106,7 @@ for x in dayVals["Date"]:
 ######################################
 leave=False
 while (leave==False):
-    Region=str.upper(input("1:All Regions\n2:Eastern Mediterranean\n3:Europe\n4:Africa\n5:Americas\n6:Western Pacific\n7:South-East Asia\n8:UK\nQ:Quit\nPlease enter a number corresponding to the Region in the list : "))
+    Region=str.upper(input("\n1:All Regions\n2:Eastern Mediterranean\n3:Europe\n4:Africa\n5:Americas\n6:Western Pacific\n7:South-East Asia\n8:UK\nQ:Quit\nPlease enter a number corresponding to the Region in the list : "))
     #Also showes the UK graph just to allow a comparison
     if Region=='1':
         #Puts the data from the list into reigionList and returns them into these variables
@@ -144,4 +143,4 @@ while (leave==False):
 # X = np.random.randn(len(Seconds))
 # fig, ax=plt.subplots()
 # ax.plot(Seconds,X)
-# #######################################
+#########################################
