@@ -43,6 +43,7 @@ class App(customtkinter.CTk):
 
         # Specify the path to the Python file you want to run
         mapPath = "Code/heatmap.py"
+        WHOpath = "Code/lineGraph.py"
 
         # Create sidebar frame with widgets
         self.sidebar_frame = customtkinter.CTkFrame(self, width=140, corner_radius=0)
@@ -85,7 +86,7 @@ class App(customtkinter.CTk):
         self.sidebar_label.grid(row=1, column=0, padx=20, pady=10)
         self.sidebar_button_A = customtkinter.CTkButton(self.function_buttons_grid,text="Covid World heat-map ",image=globeIMG, compound=customtkinter.RIGHT, command=lambda: os.system(f"python {mapPath}"))
         self.sidebar_button_A.grid(row=2, column=0, padx=20, pady=10)
-        self.sidebar_button_B = customtkinter.CTkButton(self.function_buttons_grid, text="Covid Graph - UK vs World ",image=graphIMG,compound=customtkinter.RIGHT,command=lambda: self.button_click("A"))
+        self.sidebar_button_B = customtkinter.CTkButton(self.function_buttons_grid, text="Covid Graph - UK vs World ",image=graphIMG,compound=customtkinter.RIGHT,command=lambda: os.system(f"python {WHOpath}"))
         self.sidebar_button_B.grid(row=3, column=0, padx=20, pady=10)
         self.sidebar_button_C = customtkinter.CTkButton(self.function_buttons_grid, text="Personal Covid Statistics ", image=pstatIMG, compound=customtkinter.RIGHT,command=lambda: self.button_click("B"))
         self.sidebar_button_C.grid(row=4, column=0, padx=20, pady=10)
