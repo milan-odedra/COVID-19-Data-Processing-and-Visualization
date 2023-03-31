@@ -1,16 +1,16 @@
 ##    What to do:     ##
 #-Plot covid lockdown timeline in the UK 3
+#-Add a menu to my plot
 #Remember to download the "pandas" library before running code if it isn't installed yet.
 #Use "pip install pandas" in the cmd before hand. Do the same for matplotlib.
 import pandas as pd
 import matplotlib.pyplot as plt
-import csv
 import numpy as np
 
 ################## Functions #################
 
 
-def regionList(List):
+def regionList(RegionList):
     """This puts the separated data from .csv file into a list with their day mean and returns this"""
     highestDate=1
     Confirmed=[]
@@ -26,7 +26,7 @@ def regionList(List):
         if highestDate!=x:
             highestDate=x
             #Puts the data with the corresponding date to CurrDate
-            CurrDate=dayVals[(dayVals["Date"]==(x))]
+            CurrDate=RegionList[(dayVals["Date"]==(x))]
             #Finds the mean of each column for that date
             Confirmed.append((CurrDate["Confirmed"]).mean())
             Deaths.append((CurrDate["Deaths"]).mean())
@@ -57,20 +57,23 @@ def plotGraph(Name):
     # ax[1].plot(Seconds,newCases,label="New Cases")
     # ax[1].plot(Seconds,newDeaths,label="New Deaths")
     # ax[1].plot(Seconds,newRecovered,label="New Recovered")
-    ######################
-    fig1, ax1=plt.subplots(figsize=(10,5))
-    ax1.set_title("Covid-19 cases in the UK")
-    ax1.set_xlabel("Dates")
-    ax1.set_ylabel("Number of people")
-    ax1.plot(Seconds,UK["Confirmed"],label="Confirmed")
-    ax1.plot(Seconds,UK["Deaths"],label="Deaths")
-    ax1.plot(Seconds,UK["Recovered"],label="Recovered")
-    ax1.legend()
+
+    ###################---Shows only the uk figure------######################
+    # fig1, ax1=plt.subplots(figsize=(10,5))
+    # ax1.set_title("Covid-19 cases in the UK")
+    # ax1.set_xlabel("Dates")
+    # ax1.set_ylabel("Number of people")
+    # ax1.plot(Seconds,UK["Confirmed"],label="Confirmed")
+    # ax1.plot(Seconds,UK["Deaths"],label="Deaths")
+    # ax1.plot(Seconds,UK["Recovered"],label="Recovered")
+    # ax1.legend()
+    ###########################################################################
     plt.tight_layout()
     #Need to put each label into their own graphs with the major WHO reigons being shown.##Current##
     fig0.show()
-    fig1.show()
-    input("To close the figure, input any key: ")
+    # fig1.show()
+    #This prevents the figure from closing when more than one figure is shown
+    # input("To close the figure, input any key: ")
 ###################### Main code ###########################
 
 # This puts the data from day_wise file into the dayVals variable
@@ -90,9 +93,8 @@ SouthEastAsia=dayVals[(dayVals["WHO Region"]==("South-East Asia"))]
 # print (UK)
 # print (notUK)
 ######################################
-#Separates the dates
+#Used purely for the graphs (the X axis)
 time=1
-#Used purely for the graph (the X axis)
 Seconds=[]
 for x in dayVals["Date"]:
     # print(x)
@@ -102,12 +104,15 @@ for x in dayVals["Date"]:
         Seconds.append(np.datetime64(x))
 ######################################
 ##########Temporary menu##############
+#Made to show the graphs plotting the#
+#             Figures                #
 ######################################
-#Puts the data from the list into reigionList and returns them into these variables
 leave=0
 while leave!=True:
-    Region=input("1:All Regions\n2:Eastern Mediterranean\n3:Europe\n4:Africa\n5:Americas\n6:Western Pacific\n7:South-East Asia\nQ:Quit\nPlease enter a number corresponding to the Region in the list: ")
+    Region=input("1:All Regions\n2:Eastern Mediterranean\n3:Europe\n4:Africa\n5:Americas\n6:Western Pacific\n7:South-East Asia\n8:UK\nQ:Quit\nPlease enter a number corresponding to the Region in the list : ")
+    #Also showes the UK graph just to allow a comparison
     if Region=='1':
+        #Puts the data from the list into reigionList and returns them into these variables
         Confirmed, Deaths, Recovered, Active=regionList(allRegions)
         plotGraph("the world")
     elif Region=='2':
@@ -128,7 +133,10 @@ while leave!=True:
     elif Region=='7':
         Confirmed, Deaths, Recovered, Active=regionList(SouthEastAsia)
         plotGraph("South-East Asia")
-    elif Region=='Q':
+    elif Region=='8':
+        Confirmed, Deaths, Recovered, Active=regionList(UK)
+        plotGraph("the UK")
+    elif Region=='Q'or'q':
         leave=1
 ########################################
 # print(Seconds)
@@ -137,20 +145,3 @@ while leave!=True:
 # fig, ax=plt.subplots()
 # ax.plot(Seconds,X)
 # #################################
-# ax[0].set_title("Covid-19 cases in the UK")
-# ax[0].set_xlabel("Dates")
-# ax[0].set_ylabel("Number of people")
-# ax[0].plot(Seconds,UK["Confirmed"],label="Confirmed")
-# ax[0].plot(Seconds,UK["Deaths"],label="Deaths")
-# ax[0].plot(Seconds,UK["Recovered"],label="Recovered")
-####################################
-###Incase I want to re-add all of the rest of the plots.###
-# ax[0].plot(Seconds,UK["Active"],label="Active")
-# ax[0].plot(Seconds,UK["New cases"],label="New Cases")
-# ax[0].plot(Seconds,UK["New deaths"],label="New Deaths")
-# ax[0].plot(Seconds,UK["New recovered"],label="New Recovered")
-# ax[0].legend()
-# plt.tight_layout()
-# #Need to put each label into their own graphs with the major WHO reigons being shown.##Current##
-# plt.show()
-plotGraph("the world")
