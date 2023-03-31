@@ -82,7 +82,6 @@ def plotGraph(Name):
 dayVals=pd.read_csv("Dataset\Covid-19 Dataset\\full_grouped.csv")
 #These separate the data in the UK, not in the UK as well as, into individual regions.
 UK=dayVals[(dayVals["Country/Region"]==("United Kingdom"))]
-allRegions=dayVals[(dayVals["Country/Region"]!=("United Kingdom"))]
 eastMed=dayVals[(dayVals["WHO Region"]==("Eastern Mediterranean"))]
 Euro=dayVals[(dayVals["WHO Region"]==("Europe"))]
 Africa=dayVals[(dayVals["WHO Region"]==("Africa"))]
@@ -115,7 +114,7 @@ while leave!=True:
     #Also showes the UK graph just to allow a comparison
     if Region=='1':
         #Puts the data from the list into reigionList and returns them into these variables
-        Confirmed, Deaths, Recovered, Active=regionList(allRegions)
+        Confirmed, Deaths, Recovered, Active=regionList(dayVals)
         plotGraph("the world")
     elif Region=='2':
         Confirmed, Deaths, Recovered, Active=regionList(eastMed)
