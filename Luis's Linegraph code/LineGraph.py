@@ -1,6 +1,5 @@
 ##    What to do:     ##
 # - Plot covid lockdown timeline in the UK 3
-# - Add a menu to my plot
 #########################
 #Remember to download the "pandas" library before running code if it isn't installed yet.
 #Use "pip install pandas" in the cmd before hand. Do the same for matplotlib.
@@ -19,9 +18,6 @@ def regionList(RegionList):
     Deaths=[]
     Recovered=[]
     Active=[]
-    # newCases=[]
-    # newDeaths=[]
-    # newRecovered=[]
     for x in dayVals["Date"]:
         # print(x)
         
@@ -34,13 +30,13 @@ def regionList(RegionList):
             Deaths.append(stat.mean(CurrDate["Deaths"]))
             Recovered.append(stat.mean(CurrDate["Recovered"]))
             Active.append(stat.mean(CurrDate["Active"]))
-            #######################################
+            ###########################################################
             ###Incase I want to re-add all of the rest of the plots.###
             # newCases.append((CurrDate["New cases"]).mean())
             # newDeaths.append((CurrDate["New deaths"]).mean())
             # newRecovered.append((CurrDate["New recovered"]).mean())
             # Timelist.append([Confirmed,Deaths,Recovered,Active,newCases,newDeaths,newRecovered])
-            #######################################
+            ############################################################
     return Confirmed, Deaths, Recovered, Active
 def plotGraph(Name):
     """Plots the graph using the inputs and then shows them"""
@@ -76,6 +72,7 @@ def plotGraph(Name):
     # fig1.show()
     #This prevents the figure from closing when more than one figure is shown
     # input("To close the figure, input any key: ")
+
 ###################### Main code ###########################
 
 # This puts the data from day_wise file into the dayVals variable
@@ -104,13 +101,13 @@ for x in dayVals["Date"]:
         #Converts time to a readable format that can be plotted by matplotlib
         Seconds.append(np.datetime64(x))
 ######################################
-##########Temporary menu##############
+############Command menu##############
 #Made to show the graphs plotting the#
 #             Figures                #
 ######################################
-leave=0
-while leave!=True:
-    Region=input("1:All Regions\n2:Eastern Mediterranean\n3:Europe\n4:Africa\n5:Americas\n6:Western Pacific\n7:South-East Asia\n8:UK\nQ:Quit\nPlease enter a number corresponding to the Region in the list : ")
+leave=False
+while (leave==False):
+    Region=str.upper(input("1:All Regions\n2:Eastern Mediterranean\n3:Europe\n4:Africa\n5:Americas\n6:Western Pacific\n7:South-East Asia\n8:UK\nQ:Quit\nPlease enter a number corresponding to the Region in the list : "))
     #Also showes the UK graph just to allow a comparison
     if Region=='1':
         #Puts the data from the list into reigionList and returns them into these variables
@@ -137,12 +134,14 @@ while leave!=True:
     elif Region=='8':
         Confirmed, Deaths, Recovered, Active=regionList(UK)
         plotGraph("the UK")
-    elif Region=='Q'or'q':
-        leave=1
+    elif Region==('Q'):
+        leave=True
+    else:
+        leave=False
 ########################################
 # print(Seconds)
-# #Creates a random number for each date, Checks if the dates work
+# ###Creates a random number for each date, Checks if the dates work###
 # X = np.random.randn(len(Seconds))
 # fig, ax=plt.subplots()
 # ax.plot(Seconds,X)
-# #################################
+# #######################################
