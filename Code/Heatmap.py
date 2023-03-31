@@ -21,7 +21,6 @@ geo_df.loc[14, "country_code"] = "SSD"
 
 # Next, we need to ensure that our data matches with the country codes. 
 covidcountry = pd.merge(left=codes,right=covid_df,how="left",left_on="name",right_on="Country/Region")
-print(covidcountry.loc[covidcountry['name'] == 'Turkmenistan', 'Deaths'].iloc[0])
 mergedata = pd.merge(left=geo_df, right=covidcountry, how='inner', left_on='country_code', right_on='alpha-3')
 
 # Preparing to plot
@@ -53,7 +52,7 @@ sm._A = []
 cbaxes = ax.figure.add_axes([0.15, 0.25, 0.01, 0.4])
 cbar = ax.figure.colorbar(sm, cax=cbaxes)
 
-#Showing the plot
+# Showing the plot
 plt.show()
 
 
