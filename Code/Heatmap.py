@@ -26,7 +26,7 @@ mergedata = pd.merge(left=geo_df, right=covidcountry, how='inner', left_on='coun
 # Preparing to plot
 title = 'Total COVID-19 deaths'
 col = 'Deaths'
-source = 'Kaggle'
+source = 'Data source: https://www.kaggle.com/datasets/imdevskp/corona-virus-report'
 vmin = mergedata[col].min()
 vmax = mergedata[col].max()
 cmap = 'viridis'

@@ -42,7 +42,7 @@ class App(customtkinter.CTk):
         cstatIMG = customtkinter.CTkImage(statp)
 
         # Specify the path to the Python file you want to run
-        mapPath = "Code/Heatmap.py"
+        mapPath = "Code/heatmap.py"
 
         # Create sidebar frame with widgets
         self.sidebar_frame = customtkinter.CTkFrame(self, width=140, corner_radius=0)
