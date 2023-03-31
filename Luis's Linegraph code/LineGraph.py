@@ -1,11 +1,13 @@
 ##    What to do:     ##
-#-Plot covid lockdown timeline in the UK 3
-#-Add a menu to my plot
+# - Plot covid lockdown timeline in the UK 3
+# - Add a menu to my plot
+#########################
 #Remember to download the "pandas" library before running code if it isn't installed yet.
 #Use "pip install pandas" in the cmd before hand. Do the same for matplotlib.
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import statistics as stat
 
 ################## Functions #################
 
@@ -28,10 +30,10 @@ def regionList(RegionList):
             #Puts the data with the corresponding date to CurrDate
             CurrDate=RegionList[(dayVals["Date"]==(x))]
             #Finds the mean of each column for that date
-            Confirmed.append((CurrDate["Confirmed"]).mean())
-            Deaths.append((CurrDate["Deaths"]).mean())
-            Recovered.append((CurrDate["Recovered"]).mean())
-            Active.append((CurrDate["Active"]).mean())
+            Confirmed.append(stat.mean(CurrDate["Confirmed"]))
+            Deaths.append(stat.mean(CurrDate["Deaths"]))
+            Recovered.append(stat.mean(CurrDate["Recovered"]))
+            Active.append(stat.mean(CurrDate["Active"]))
             #######################################
             ###Incase I want to re-add all of the rest of the plots.###
             # newCases.append((CurrDate["New cases"]).mean())
@@ -51,7 +53,7 @@ def plotGraph(Name):
     ax0.plot(Seconds,Deaths,label="Deaths")
     ax0.plot(Seconds,Recovered,label="Recovered")
     ax0.legend()
-    
+
     ###Incase I want to re-add all of the rest of the plots.###
     # ax[1].plot(Seconds,Active,label="Active")
     # ax[1].plot(Seconds,newCases,label="New Cases")
