@@ -1,26 +1,20 @@
-import tkinter
-import tkinter.messagebox
 import customtkinter
-from PIL import Image, ImageTk
+from PIL import Image
 import os
 import pandas as pd
-import numpy as np
-import sys 
+ 
 
-customtkinter.set_appearance_mode("System")  # Modes: "System" (standard), "Dark", "Light"
-customtkinter.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark-blue"
+customtkinter.set_appearance_mode("Light")
+customtkinter.set_default_color_theme("blue")
 
 
 class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
         
-
         # configure window
-        self.title("Homepage for Team 6's Covid-19 statistics and graphs")
+        self.title("Homepage for Team 6's Covid-19 Analysis")
         self.geometry(f"{1100}x{580}")
-
-       
 
         # configure grid layout (4x4)
         self.grid_columnconfigure(1, weight=1)
@@ -47,10 +41,10 @@ class App(customtkinter.CTk):
         statp = statp.resize((25, 25))
         cstatIMG = customtkinter.CTkImage(statp)
 
-        # specify the path to the Python file you want to run
+        # Specify the path to the Python file you want to run
         mapPath = "Code/Heatmap.py"
 
-        # create sidebar frame with widgets
+        # Create sidebar frame with widgets
         self.sidebar_frame = customtkinter.CTkFrame(self, width=140, corner_radius=0)
         self.sidebar_frame.grid(row=0, column=0, rowspan=4, sticky="nsew")
         self.sidebar_frame.grid_rowconfigure(4, weight=1)
@@ -75,16 +69,16 @@ class App(customtkinter.CTk):
                                                                command=self.change_scaling_event)
         self.scaling_optionemenu.grid(row=8, column=0, padx=20, pady=(10, 20))
 
-        #DF for textbox
+        # Dataframe for textbox
         dframe = pd.read_csv('Data\\country_wise_latest.csv', sep=",").iloc[:,:3]
 
-        # create Textbox
+        # Create Textbox
         self.Textbox = customtkinter.CTkTextbox(self, width=250)
         self.Textbox.grid(row=0, column=1, padx=(20, 0), pady=(20, 0), sticky="nsew")
 
         
 
-        # create checkbox and switch frame
+        # Create checkbox and switch frame
         self.function_buttons_grid = customtkinter.CTkFrame(self)
         self.function_buttons_grid.grid(row=0, column=3, padx=(20, 20), pady=(20, 0), sticky="nsew")
         self.sidebar_label = customtkinter.CTkLabel(self.function_buttons_grid,text="Our functionalities", font=customtkinter.CTkFont(size=15, weight="bold"))
@@ -98,7 +92,7 @@ class App(customtkinter.CTk):
         self.sidebar_button_D = customtkinter.CTkButton(self.function_buttons_grid, text="Country Covid Statistics ", image=cstatIMG, compound=customtkinter.RIGHT,command=lambda: self.button_click("C"))
         self.sidebar_button_D.grid(row=5, column=0, padx=20, pady=10)
 
-        # set default values
+        # Set default values
         self.appearance_mode_optionemenu.set("Light")
         self.scaling_optionemenu.set("100%")
         self.sidebar_frame_C.configure(state="disabled")
