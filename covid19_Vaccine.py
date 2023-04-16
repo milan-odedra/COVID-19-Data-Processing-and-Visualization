@@ -133,7 +133,7 @@ plt.figure(figsize=(12,8))
 sns.barplot(data = vacc_names_by_country, x='vaccines', y = 'total_vaccinations', hue= 'country', dodge=False)
 plt.xticks(rotation=90)
 
-# Plot choropleth showing vaccination data across the world
+# Plot choropleth showing vaccination data across the world (loads into browser)
 fig = px.choropleth(df.reset_index(), locations="iso_code",
                     color="total_vaccinations_per_hundred",
                     color_continuous_scale=px.colors.sequential.Electric,
