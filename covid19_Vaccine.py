@@ -92,9 +92,19 @@ vaccines_per_country = df.groupby('country').max().sort_values('total_vaccinatio
 vaccines_per_country = vaccines_per_country.iloc[:10]
 print(vaccines_per_country)
 
+# Countries total vaccinations
+plt.figure(figsize=(16,7))
+plt.bar(vaccines_per_country.index, vaccines_per_country.total_vaccinations)
+plt.title('Total vaccinations per country')
+plt.xticks(rotation = 90)
+plt.ylabel('Total vaccinations')
+plt.xlabel('Country')
+plt.show()
+
 # Sort total vaccinations per 100 people
 vaccines_per_country = vaccines_per_country.sort_values('total_vaccinations_per_hundred', ascending=False)
 print(vaccines_per_country)
+
 
 # plot bar chart of vaccines per houndred poeple 
 plt.figure(figsize=(18,6))
@@ -103,3 +113,5 @@ plt.xticks(rotation = 90)
 plt.ylabel('Vaccinations per 100')
 plt.xlabel('Country')
 plt.show()
+
+#
