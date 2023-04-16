@@ -32,8 +32,8 @@ for day in range(1,  len(confirmed)):
     new_cases.iloc[day] = confirmed.iloc[day] - confirmed.iloc[day - 1]
 
 # New and confirmed cases
-#print(new_cases.tail(10))
-#print(confirmed.tail(10))
+print(new_cases.tail(10))
+print(confirmed.tail(10))
 
 # Growth rate
 growth_rate = confirmed.copy()
@@ -103,9 +103,9 @@ print
 print(deaths['Italy'].tail()[4])
 
 # Prouduce a simulated covid growth rate
-simulated_growth_rate = 0.10
+simulated_growth_rate = 0.05
 
-dates = pd.date_range(start='3/23/2023', periods=40, freq='D')
+dates = pd.date_range(start='3/23/2020', periods=40, freq='D')
 dates = pd.Series(dates).dt.strftime('%m/%d/%Y')
 
 simulated = confirmed.copy()
@@ -125,7 +125,7 @@ plt.show()
 
 print(simulated)
 
-#test
+
 
 
 
