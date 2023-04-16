@@ -78,4 +78,28 @@ plt.show()
 
 # Plot daily vaccinations as a data function
 
+plt.figure(figsize=(18,6))
+sns.lineplot(data=df_GBR, x="date", y="daily_vaccinations")
+plt.title("Daily number of Vaccinations - United Kingdom")
+plt.xticks(rotation=90)
+plt.show()
 
+# _______________________
+
+# World Vaccine data
+# Group the data to show total vaccinations by countries and sort decending to show top 10 countries
+vaccines_per_country = df.groupby('country').max().sort_values('total_vaccinations', ascending=False)
+vaccines_per_country = vaccines_per_country.iloc[:10]
+print(vaccines_per_country)
+
+# Sort total vaccinations per 100 people
+vaccines_per_country = vaccines_per_country.sort_values('total_vaccinations_per_hundred', ascending=False)
+print(vaccines_per_country)
+
+# plot bar chart of vaccines per houndred poeple 
+plt.figure(figsize=(18,6))
+plt.bar(vaccines_per_country.index, vaccines_per_country.total_vaccinations_per_hundred)
+plt.xticks(rotation = 90)
+plt.ylabel('Vaccinations per 100')
+plt.xlabel('Country')
+plt.show()
