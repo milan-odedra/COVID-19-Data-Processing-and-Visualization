@@ -63,17 +63,19 @@ plt.show()
 # Vaccine data for United Kingdom
 
 # Save United Kingdom data into second dataframe
-df_UK = df[df["iso_code"] == 'UK'].copy()
-df_UK
+df_GBR = df[df["iso_code"] == 'GBR'].copy()
+df_GBR
 
 # Drop the dates with values equal to 0
-df_UK.drop(df_UK.index[df_India['total_vaccinations'] == 0], inplace = True)
+df_GBR.drop(df_GBR.index[df_GBR['total_vaccinations'] == 0], inplace = True)
 
 # Plot the total number of vaccinations for UK
 plt.figure(figsize=(18,6))
-sns.lineplot(data=df_UK, x="date", y="total_vaccinations")
+sns.lineplot(data=df_GBR, x="date", y="total_vaccinations")
 plt.title("Total vaccinations in the UK")
 plt.xticks(rotation=45)
-plt.show
+plt.show()
 
 # Plot daily vaccinations as a data function
+
+
