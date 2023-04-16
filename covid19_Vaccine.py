@@ -93,7 +93,7 @@ vaccines_per_country = vaccines_per_country.iloc[:10]
 print(vaccines_per_country)
 
 # Countries total vaccinations
-plt.figure(figsize=(16,7))
+plt.figure(figsize=(18,6))
 plt.bar(vaccines_per_country.index, vaccines_per_country.total_vaccinations)
 plt.title('Total vaccinations per country')
 plt.xticks(rotation = 90)
@@ -109,9 +109,38 @@ print(vaccines_per_country)
 # plot bar chart of vaccines per houndred poeple 
 plt.figure(figsize=(18,6))
 plt.bar(vaccines_per_country.index, vaccines_per_country.total_vaccinations_per_hundred)
+plt.title('Vaccinations per 100 people')
 plt.xticks(rotation = 90)
 plt.ylabel('Vaccinations per 100')
 plt.xlabel('Country')
 plt.show()
 
-#
+# Sort total number of vaccinations delivered by countries and group by vaccine names
+vacc_names_by_country = df.groupby('vaccines').max().sort_values('total_vaccinations', ascending=False)
+vacc_names_by_country.head()
+print(vacc_names_by_country)
+
+# Print top 10 vaccines by country
+vacc_names_by_country = vacc_names_by_country.iloc[:10]
+print(vacc_names_by_country)
+
+# Reset index 
+vacc_names_by_country=vacc_names_by_country.reset_index()
+print(vacc_names_by_country)
+
+# plot bar chart to show which vaccines are being taken the most
+plt.figure(figsize=(12,8))
+sns.barplot(data = vacc_names_by_country, x='vaccines', y = 'total_vaccinations', hue= 'country', dodge=False)
+plt.xticks(rotation=90)
+
+# Plot choropleth showing vaccination data across the world
+fig = px.choropleth(df.reset_index(), locations="iso_code",
+                    color="total_vaccinations_per_hundred",
+                    color_continuous_scale=px.colors.sequential.Electric,
+                   title= "Total vaccinations per 100")
+
+fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})  #No margin on left, right, top and bottom
+fig.show()
+
+
+
