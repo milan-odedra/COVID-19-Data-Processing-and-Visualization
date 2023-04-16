@@ -6,6 +6,10 @@ import matplotlib.pyplot as plt
 import plotly.express as px
 
 # read data into pandas
-df=pd.read_csv("vaccine_data/country_vaccinations.csv")
+df=pd.read_csv('country_vaccinations.csv')
 
-df.head()
+# prints first five columns of dataset
+print(df.head())
+
+# prints missing values
+print(df.isnull().sum())
