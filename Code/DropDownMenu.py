@@ -60,6 +60,7 @@ weekPercentIncreaseLabel.pack()
 whoRegionLabel = tkinter.Label(window, text="WHO Region: ")
 whoRegionLabel.pack()
 
+
 def displayData():
     country = clicked.get()
     data = countryStatistics[country]
