@@ -71,7 +71,7 @@ class App(customtkinter.CTk):
         self.scaling_optionemenu.grid(row=8, column=0, padx=20, pady=(10, 20))
 
         # Dataframe for textbox
-        dframe = pd.read_csv('Data\\country_wise_latest.csv', sep=",").iloc[:,:3]
+        dframe = pd.read_csv('Data/country_wise_latest.csv', sep=",").iloc[:,:3]
 
         # Create Textbox
         self.Textbox = customtkinter.CTkTextbox(self, width=250)
