@@ -3,11 +3,11 @@ import matplotlib.pyplot as plt
 import geopandas as gpd
 
 # Reading files
-covid_df =  pd.read_csv('Data\\country_wise_latest.csv', sep=",").iloc[:,:3]
+covid_df =  pd.read_csv('Data/country_wise_latest.csv', sep=",").iloc[:,:3]
 
-codes = pd.read_csv("Geo\\all.csv").iloc[:,:4]
+codes = pd.read_csv("Geo/all.csv").iloc[:,:4]
 # Read shapefile using Geopandas
-SHAPEFILE = 'Geo\\ne_10m_admin_0_countries.shp'
+SHAPEFILE = 'Geo/ne_10m_admin_0_countries.shp'
 geo_df = gpd.read_file(SHAPEFILE)[['ADMIN', 'ADM0_A3', 'geometry']]
 
 # Rename columns.

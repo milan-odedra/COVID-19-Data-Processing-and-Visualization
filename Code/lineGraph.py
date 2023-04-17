@@ -46,7 +46,7 @@ def plotGraph(Name):
 ###################### Main code ###########################
 
 # This puts the data from day_wise file into the dayVals variable
-dayVals=pd.read_csv("Data\\full_grouped.csv")
+dayVals=pd.read_csv("Data/full_grouped.csv")
 #These separate the data in the UK, not in the UK as well as, into individual regions.
 UK=dayVals[(dayVals["Country/Region"]==("United Kingdom"))]
 eastMed=dayVals[(dayVals["WHO Region"]==("Eastern Mediterranean"))]

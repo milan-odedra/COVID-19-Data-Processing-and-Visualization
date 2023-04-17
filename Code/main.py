@@ -2,6 +2,7 @@ import customtkinter
 from PIL import Image
 import os
 import pandas as pd
+import csv
  
 
 customtkinter.set_appearance_mode("Light")
@@ -44,6 +45,7 @@ class App(customtkinter.CTk):
         # Specify the path to the Python file you want to run
         mapPath = "Code/heatmap.py"
         WHOpath = "Code/lineGraph.py"
+        menuPath = "Code/DropDownMenu.py"
 
         # Create sidebar frame with widgets
         self.sidebar_frame = customtkinter.CTkFrame(self, width=140, corner_radius=0)
@@ -71,7 +73,7 @@ class App(customtkinter.CTk):
         self.scaling_optionemenu.grid(row=8, column=0, padx=20, pady=(10, 20))
 
         # Dataframe for textbox
-        dframe = pd.read_csv('Data\\country_wise_latest.csv', sep=",").iloc[:,:3]
+        dframe = pd.read_csv('Data/country_wise_latest.csv', sep=",").iloc[:,:3]
 
         # Create Textbox
         self.Textbox = customtkinter.CTkTextbox(self, width=250)
@@ -92,13 +94,17 @@ class App(customtkinter.CTk):
         self.sidebar_button_C.grid(row=4, column=0, padx=20, pady=10)
         self.sidebar_button_D = customtkinter.CTkButton(self.function_buttons_grid, text="Country Covid Statistics ", image=cstatIMG, compound=customtkinter.RIGHT,command=lambda: self.button_click("C"))
         self.sidebar_button_D.grid(row=5, column=0, padx=20, pady=10)
-
+        self.sidebar_button_E = customtkinter.CTkButton(self.function_buttons_grid, text="Search for Country Information ", compound=customtkinter.RIGHT,command=lambda: os.system(f"python {menuPath}"))
+        self.sidebar_button_E.grid(row=6, column=0, padx=20, pady=10)
+        
         # Set default values
         self.appearance_mode_optionemenu.set("Light")
         self.scaling_optionemenu.set("100%")
         self.sidebar_frame_C.configure(state="disabled")
         self.Textbox.insert("0.0", text=f"This is out data. Feel free to scroll through \n {dframe.to_string()}")
        
+
+        
 
     def open_input_dialog_event(self):
         dialog = customtkinter.CTkInputDialog(text="Type in a number:", title="CTkInputDialog")
@@ -116,6 +122,8 @@ class App(customtkinter.CTk):
         
     def button_click(self,button_label):
         print("Button", button_label, "pressed")
+
+    
 
 if __name__ == "__main__":
     app = App()
