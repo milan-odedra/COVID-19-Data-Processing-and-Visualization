@@ -65,17 +65,17 @@ while (leave==False):
     print(vaccines_per_country)
 
     # Sort total number of vaccinations delivered by countries and group by vaccine names
-    vacc_names_by_country = df.groupby('vaccines').max().sort_values('total_vaccinations', ascending=False)
-    vacc_names_by_country.head()
-    print(vacc_names_by_country)
+    vaccination_names_by_country = df.groupby('vaccines').max().sort_values('total_vaccinations', ascending=False)
+    vaccination_names_by_country.head()
+    print(vaccination_names_by_country)
 
     # Print top 10 vaccines by country
-    vacc_names_by_country = vacc_names_by_country.iloc[:10]
-    print(vacc_names_by_country)
+    vaccination_names_by_country = vaccination_names_by_country.iloc[:10]
+    print(vaccination_names_by_country)
 
     # Reset index 
-    vacc_names_by_country=vacc_names_by_country.reset_index()
-    print(vacc_names_by_country)
+    vaccination_names_by_country=vaccination_names_by_country.reset_index()
+    print(vaccination_names_by_country)
 
     Menu=str.upper(input("\n1) Print First 5 Rows \n2: Plot india Total Vaccinations \n3: Plot India Daily Vaccinations \n4: Plot UK Total Vaccinations \n5: Plot UK Daily Vaccinations \n6: Plot Total Vaccines By Countries  \n7: Plot Total Vaccines Per 100 People  \n8: Vaccines Taken the Most \n9: Total Vaccines per Hundred (Map) \nQ: Quit \n\nPlease select an option: "))
 
@@ -138,7 +138,7 @@ while (leave==False):
     elif Menu=="8":
         # plot bar chart to show which vaccines are being taken the most
         plt.figure(figsize=(12,8))
-        sns.barplot(data = vacc_names_by_country, x='vaccines', y = 'total_vaccinations', hue= 'country', dodge=False)
+        sns.barplot(data = vaccination_names_by_country, x='vaccines', y = 'total_vaccinations', hue= 'country', dodge=False)
         plt.xticks(rotation=90)
         plt.show()
 
