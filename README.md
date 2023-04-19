@@ -3,10 +3,10 @@ Data processing and visualisation Group task Coursework
 
 Author - Milan Odedra
 
-Covid data used is of the current year.
+Dataset: Vaccines 
 
-Contains statistics of the countries recovered with a live covid information.<br/>
-Contains statistics of the countries cities with a ranking of the least cases and deaths.  
+Contains statistics of the vaccine data for India and the UK.<br/>
+Contains statistics of the total vaccines per country, per 100 people and a choropleth map.  
 
 
 
