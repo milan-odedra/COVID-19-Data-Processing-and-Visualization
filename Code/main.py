@@ -46,6 +46,7 @@ class App(customtkinter.CTk):
         mapPath = "Code/heatmap.py"
         WHOpath = "Code/lineGraph.py"
         menuPath = "Code/DropDownMenu.py"
+        vaccinePath = "Code/covid19_Vaccine.py"
 
         # Create sidebar frame with widgets
         self.sidebar_frame = customtkinter.CTkFrame(self, width=140, corner_radius=0)
