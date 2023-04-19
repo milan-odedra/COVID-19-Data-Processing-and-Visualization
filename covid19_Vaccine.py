@@ -53,7 +53,7 @@ while (leave==False):
 
     # ___________________________________________________
 
-    # World Vaccine data
+    # World Vaccine Data
 
     # Group the data to show total vaccinations by countries and sort decending to show top 10 countries
     vaccines_per_country = df.groupby('country').max().sort_values('total_vaccinations', ascending=False)
