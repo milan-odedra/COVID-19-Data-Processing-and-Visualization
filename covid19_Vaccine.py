@@ -32,7 +32,7 @@ while (leave==False):
     # print the columns names 
     print(df.columns)
 
-    # remove uneeded data and keep mostly vaccine relevant data
+    # Drop data not needed for this analysis
     df.drop(["people_fully_vaccinated","daily_vaccinations_raw","people_fully_vaccinated_per_hundred",
             "daily_vaccinations_per_million","people_vaccinated_per_hundred", "source_name","source_website"],axis=1, inplace=True)
 
@@ -77,7 +77,7 @@ while (leave==False):
     vacc_names_by_country=vacc_names_by_country.reset_index()
     print(vacc_names_by_country)
 
-    Menu=str.upper(input("\n1) Print 5 Rows \n2: Plot india Total Vaccinations \n3: Plot India Daily Vaccinations \n4: Plot UK Total Vaccinations \n5: Plot UK Daily Vaccinations \n6: Plot Total Vaccines By Countries  \n7: Plot Total Vaccines Per 100 People  \n8: Vaccines Taken the Most \n9: Total Vaccines per Hundred (Map) \nQ: Quit \n\nPlease select an option: "))
+    Menu=str.upper(input("\n1) Print First 5 Rows \n2: Plot india Total Vaccinations \n3: Plot India Daily Vaccinations \n4: Plot UK Total Vaccinations \n5: Plot UK Daily Vaccinations \n6: Plot Total Vaccines By Countries  \n7: Plot Total Vaccines Per 100 People  \n8: Vaccines Taken the Most \n9: Total Vaccines per Hundred (Map) \nQ: Quit \n\nPlease select an option: "))
 
     if Menu=="1":
         # prints first five columns of dataset
@@ -151,3 +151,9 @@ while (leave==False):
 
         fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})  #No margin on left, right, top and bottom
         fig.show()  
+    
+    elif Menu==('Q'):
+        leave=True
+
+    else:
+        leave=False
