@@ -44,7 +44,7 @@ while (leave==False):
 
     # ____________________________________________
     
-    # Save United Kingdom data into second dataframe
+    # Save United Kingdom (GBR) data into second dataframe
     df_GBR = df[df["iso_code"] == 'GBR'].copy()
     df_GBR
 
