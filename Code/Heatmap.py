@@ -23,6 +23,8 @@ geo_df.loc[14, "country_code"] = "SSD"
 covidcountry = pd.merge(left=codes,right=covid_df,how="left",left_on="name",right_on="Country/Region")
 mergedata = pd.merge(left=geo_df, right=covidcountry, how='inner', left_on='country_code', right_on='alpha-3')
 
+#mergedata = pd.merge(left=geo_df, right=covid_df, how='inner', left_on='country', right_on='Country/Region')
+
 # Preparing to plot
 title = 'Total COVID-19 deaths'
 col = 'Deaths'
