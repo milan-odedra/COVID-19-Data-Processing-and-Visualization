@@ -95,7 +95,7 @@ while (leave==False):
         plt.figure(figsize=(18,6))
         sns.lineplot(data=df_India, x="date", y="daily_vaccinations")
         plt.title("Daily number of Vaccinations - India")
-        plt.xticks(rotation=45)
+        plt.xticks(rotation=90)
         plt.show()
 
     elif Menu=="4":
@@ -103,7 +103,7 @@ while (leave==False):
         plt.figure(figsize=(18,6))
         sns.lineplot(data=df_GBR, x="date", y="total_vaccinations")
         plt.title("Total vaccinations in the UK")
-        plt.xticks(rotation=45)
+        plt.xticks(rotation=90)
         plt.show()
 
 
@@ -112,7 +112,7 @@ while (leave==False):
         plt.figure(figsize=(18,6))
         sns.lineplot(data=df_GBR, x="date", y="daily_vaccinations")
         plt.title("Daily number of Vaccinations - United Kingdom")
-        plt.xticks(rotation=45)
+        plt.xticks(rotation=90)
         plt.show() 
 
     elif Menu=="6":
@@ -120,7 +120,7 @@ while (leave==False):
         plt.figure(figsize=(18,6))
         plt.bar(vaccines_per_country.index, vaccines_per_country.total_vaccinations)
         plt.title('Total vaccinations Per Country')
-        plt.xticks(rotation = 45)
+        plt.xticks(rotation = 90)
         plt.ylabel('Total Vaccinations')
         plt.xlabel('Country')
         plt.show()
@@ -129,7 +129,7 @@ while (leave==False):
         # plot bar chart of vaccines per houndred poeple 
         plt.figure(figsize=(18,6))
         plt.bar(vaccines_per_country.index, vaccines_per_country.total_vaccinations_per_hundred)
-        plt.xticks(rotation = 45)
+        plt.xticks(rotation = 90)
         plt.ylabel('Vaccinations per 100 People')
         plt.xlabel('Country')
         plt.show()
@@ -139,7 +139,7 @@ while (leave==False):
         plt.figure(figsize=(12,8))
         plt.title("Most Used Vaccines by Country")
         sns.barplot(data = vaccination_names_by_country, x='vaccines', y = 'total_vaccinations', hue= 'country', dodge=False)
-        plt.xticks(rotation=45)
+        plt.xticks(rotation=90)
         plt.show()
 
     elif Menu=="9":
