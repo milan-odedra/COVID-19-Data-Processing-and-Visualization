@@ -50,7 +50,7 @@ class App(customtkinter.CTk):
         mapPath = "Code/heatmap.py"
         WHOpath = "Code/lineGraph.py"
         menuPath = "Code/DropDownMenu.py"
-        vaccinePath = "Code/covid19_Vaccine.py"
+        vacpath = "Code/covid19_Vaccine.py"
 
         # Create sidebar frame with widgets
         self.sidebar_frame = customtkinter.CTkFrame(self, width=140, corner_radius=0)
@@ -95,7 +95,7 @@ class App(customtkinter.CTk):
         self.sidebar_button_A.grid(row=2, column=0, padx=20, pady=10)
         self.sidebar_button_B = customtkinter.CTkButton(self.function_buttons_grid, text="Covid Graphs",image=graphIMG,compound=customtkinter.RIGHT,command=lambda: os.system(f"python {WHOpath}"))
         self.sidebar_button_B.grid(row=3, column=0, padx=20, pady=10)
-        self.sidebar_button_C = customtkinter.CTkButton(self.function_buttons_grid, text="Personal Covid Statistics ", image=pstatIMG, compound=customtkinter.RIGHT,command=lambda: self.button_click("B"))
+        self.sidebar_button_C = customtkinter.CTkButton(self.function_buttons_grid, text="Vaccine Statistics ", image=pstatIMG, compound=customtkinter.RIGHT,command=lambda: os.system(f"python {vacpath}"))
         self.sidebar_button_C.grid(row=4, column=0, padx=20, pady=10)
         self.sidebar_button_D = customtkinter.CTkButton(self.function_buttons_grid, text="Country Covid Statistics ", image=cstatIMG, compound=customtkinter.RIGHT,command=lambda: self.button_click("C"))
         self.sidebar_button_D.grid(row=5, column=0, padx=20, pady=10)
