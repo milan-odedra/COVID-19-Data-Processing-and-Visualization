@@ -50,6 +50,7 @@ class App(customtkinter.CTk):
         mapPath = "Code/heatmap.py"
         WHOpath = "Code/lineGraph.py"
         menuPath = "Code/DropDownMenu.py"
+        vaccinePath = "Code/covid19_Vaccine.py"
 
         # Create sidebar frame with widgets
         self.sidebar_frame = customtkinter.CTkFrame(self, width=140, corner_radius=0)
@@ -123,7 +124,6 @@ if __name__ == "__main__":
     app.mainloop()
 
 
-
 #Icon and code sources:
 #Earth free icon (no date) Flaticon. Available at: https://www.flaticon.com/free-icon/earth_44386?term=earth&page=1&position=10&origin=search&related_id=44386 (Accessed: April 19, 2023).
 #Magnifier free icon (no date) Flaticon. Available at: https://www.flaticon.com/free-icon/magnifier_64673?term=search&page=1&position=9&origin=tag&related_id=64673 (Accessed: April 19, 2023).
@@ -131,4 +131,6 @@ if __name__ == "__main__":
 #Statistics free icon (no date) Flaticon. Available at: https://www.flaticon.com/free-icon/statistics_7626202?term=statistics&page=4&position=87&origin=search&related_id=7626202 (Accessed: April 19, 2023).
 #Wave Graph free icon (no date) Flaticon. Available at: https://www.flaticon.com/free-icon/wave-graph_3647724?term=graph&page=1&position=11&origin=search&related_id=3647724 (Accessed: April 19, 2023).
 #Schimansky, T. (Feb 5 2023) complex_example.py at master · TomSchimansky/CustomTkinter.
+
+
 
