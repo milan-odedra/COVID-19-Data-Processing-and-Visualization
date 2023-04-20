@@ -2,7 +2,6 @@ import customtkinter
 from PIL import Image
 import os
 import pandas as pd
-import csv
  
 
 customtkinter.set_appearance_mode("Light")
@@ -42,6 +41,11 @@ class App(customtkinter.CTk):
         statp = statp.resize((25, 25))
         cstatIMG = customtkinter.CTkImage(statp)
 
+        # Search image
+        search = Image.open("Icons/magnifier.png")
+        search = search.resize((25, 25))
+        searchIMG = customtkinter.CTkImage(search)
+
         # Specify the path to the Python file you want to run
         mapPath = "Code/heatmap.py"
         WHOpath = "Code/lineGraph.py"
@@ -50,7 +54,7 @@ class App(customtkinter.CTk):
 
         # Create sidebar frame with widgets
         self.sidebar_frame = customtkinter.CTkFrame(self, width=140, corner_radius=0)
-        self.sidebar_frame.grid(row=0, column=0, rowspan=4, sticky="nsew")
+        self.sidebar_frame.grid(row=0, column=0, rowspan=3, sticky="nsew")
         self.sidebar_frame.grid_rowconfigure(4, weight=1)
 
         self.sidebar_frame_A = customtkinter.CTkButton(self.sidebar_frame,text="Everybody look at this amazing GUI! It deserves 100%")
@@ -89,13 +93,13 @@ class App(customtkinter.CTk):
         self.sidebar_label.grid(row=1, column=0, padx=20, pady=10)
         self.sidebar_button_A = customtkinter.CTkButton(self.function_buttons_grid,text="Covid World heat-map ",image=globeIMG, compound=customtkinter.RIGHT, command=lambda: os.system(f"python {mapPath}"))
         self.sidebar_button_A.grid(row=2, column=0, padx=20, pady=10)
-        self.sidebar_button_B = customtkinter.CTkButton(self.function_buttons_grid, text="Covid Graph - UK vs World ",image=graphIMG,compound=customtkinter.RIGHT,command=lambda: os.system(f"python {WHOpath}"))
+        self.sidebar_button_B = customtkinter.CTkButton(self.function_buttons_grid, text="Covid Graphs",image=graphIMG,compound=customtkinter.RIGHT,command=lambda: os.system(f"python {WHOpath}"))
         self.sidebar_button_B.grid(row=3, column=0, padx=20, pady=10)
         self.sidebar_button_C = customtkinter.CTkButton(self.function_buttons_grid, text="Personal Covid Statistics ", image=pstatIMG, compound=customtkinter.RIGHT,command=lambda: self.button_click("B"))
         self.sidebar_button_C.grid(row=4, column=0, padx=20, pady=10)
         self.sidebar_button_D = customtkinter.CTkButton(self.function_buttons_grid, text="Country Covid Statistics ", image=cstatIMG, compound=customtkinter.RIGHT,command=lambda: self.button_click("C"))
         self.sidebar_button_D.grid(row=5, column=0, padx=20, pady=10)
-        self.sidebar_button_E = customtkinter.CTkButton(self.function_buttons_grid, text="Search for Country Information ", compound=customtkinter.RIGHT,command=lambda: os.system(f"python {menuPath}"))
+        self.sidebar_button_E = customtkinter.CTkButton(self.function_buttons_grid, text="Search for Country Information ",image=searchIMG, compound=customtkinter.RIGHT,command=lambda: os.system(f"python {menuPath}"))
         self.sidebar_button_E.grid(row=6, column=0, padx=20, pady=10)
         
         # Set default values
@@ -105,11 +109,7 @@ class App(customtkinter.CTk):
         self.Textbox.insert("0.0", text=f"This is out data. Feel free to scroll through \n {dframe.to_string()}")
        
 
-        
-
-    def open_input_dialog_event(self):
-        dialog = customtkinter.CTkInputDialog(text="Type in a number:", title="CTkInputDialog")
-        print("CTkInputDialog:", dialog.get_input())
+    
 
     def change_appearance_mode_event(self, new_appearance_mode: str):
         customtkinter.set_appearance_mode(new_appearance_mode)
@@ -117,15 +117,20 @@ class App(customtkinter.CTk):
     def change_scaling_event(self, new_scaling: str):
         new_scaling_float = int(new_scaling.replace("%", "")) / 100
         customtkinter.set_widget_scaling(new_scaling_float)
-
-    def sidebar_button_event(self):
-        print("sidebar_button click")
-        
-    def button_click(self,button_label):
-        print("Button", button_label, "pressed")
-
     
 
 if __name__ == "__main__":
     app = App()
     app.mainloop()
+
+
+#Icon and code sources:
+#Earth free icon (no date) Flaticon. Available at: https://www.flaticon.com/free-icon/earth_44386?term=earth&page=1&position=10&origin=search&related_id=44386 (Accessed: April 19, 2023).
+#Magnifier free icon (no date) Flaticon. Available at: https://www.flaticon.com/free-icon/magnifier_64673?term=search&page=1&position=9&origin=tag&related_id=64673 (Accessed: April 19, 2023).
+#Pie Chart free icon (no date) Flaticon. Available at: https://www.flaticon.com/free-icon/pie-chart_2936690?term=statistics&page=1&position=5&origin=search&related_id=2936690 (Accessed: April 19, 2023).
+#Statistics free icon (no date) Flaticon. Available at: https://www.flaticon.com/free-icon/statistics_7626202?term=statistics&page=4&position=87&origin=search&related_id=7626202 (Accessed: April 19, 2023).
+#Wave Graph free icon (no date) Flaticon. Available at: https://www.flaticon.com/free-icon/wave-graph_3647724?term=graph&page=1&position=11&origin=search&related_id=3647724 (Accessed: April 19, 2023).
+#Schimansky, T. (Feb 5 2023) complex_example.py at master · TomSchimansky/CustomTkinter.
+
+
+
