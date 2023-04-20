@@ -10,27 +10,20 @@ import plotly.express as px
 # Menu 
 leave=False
 while (leave==False):
-    df=pd.read_csv('country_vaccinations.csv') # Read Vaccine Data into Pandas
+    df=pd.read_csv('Data/country_vaccinations.csv') # Read Vaccine Data into Pandas
 
     # Start Sorting Data
 
-    # prints missing values
-    print(df.isnull().sum())
-
     # Fill null values with 0 and drop countries with iso_code = 0
-    print(df.fillna(0, inplace = True))
-    print(df.drop(df.index[df['iso_code'] == 0], inplace = True))
-
-    df.isnull().sum()
+    df.fillna(0, inplace = True)
+    df.drop(df.index[df['iso_code'] == 0], inplace = True)
 
     # show datatypes of columns
-    df.info()
+    #df.info()
 
     # Change data format
     df['date'] = pd.to_datetime(df['date'], format='%Y-%m-%d')
 
-    # print the columns names 
-    print(df.columns)
 
     # Drop data not needed for this analysis
     df.drop(["people_fully_vaccinated","daily_vaccinations_raw","people_fully_vaccinated_per_hundred",
@@ -58,24 +51,19 @@ while (leave==False):
     # Group the data to show total vaccinations by countries and sort decending to show top 10 countries
     vaccines_per_country = df.groupby('country').max().sort_values('total_vaccinations', ascending=False)
     vaccines_per_country = vaccines_per_country.iloc[:10]
-    print(vaccines_per_country)
 
     # Sort total vaccinations per 100 people
     vaccines_per_country = vaccines_per_country.sort_values('total_vaccinations_per_hundred', ascending=False)
-    print(vaccines_per_country)
 
     # Sort total number of vaccinations delivered by countries and group by vaccine names
     vaccination_names_by_country = df.groupby('vaccines').max().sort_values('total_vaccinations', ascending=False)
     vaccination_names_by_country.head()
-    print(vaccination_names_by_country)
 
-    # Print top 10 vaccines by country
-    vaccination_names_by_country = vaccination_names_by_country.iloc[:10]
-    print(vaccination_names_by_country)
+    # top 10 vaccines by country
+    #vaccination_names_by_country = vaccination_names_by_country.iloc[:10]
 
     # Reset index 
     vaccination_names_by_country=vaccination_names_by_country.reset_index()
-    print(vaccination_names_by_country)
 
     Menu=str.upper(input("\n1) Print First 5 Rows \n2: Plot india Total Vaccinations \n3: Plot India Daily Vaccinations \n4: Plot UK Total Vaccinations \n5: Plot UK Daily Vaccinations \n6: Plot Total Vaccines By Countries  \n7: Plot Total Vaccines Per 100 People  \n8: Vaccines Taken the Most \n9: Total Vaccines per Hundred (Map) \nQ: Quit \n\nPlease select an option: "))
 
