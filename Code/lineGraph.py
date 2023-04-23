@@ -12,7 +12,6 @@ def regionList(RegionList):
     Confirmed=[]
     Deaths=[]
     Recovered=[]
-    Active=[]
 
     for x in dayVals["Date"]:
 
@@ -25,9 +24,8 @@ def regionList(RegionList):
             Confirmed.append(stat.mean(CurrDate["Confirmed"]))
             Deaths.append(stat.mean(CurrDate["Deaths"]))
             Recovered.append(stat.mean(CurrDate["Recovered"]))
-            Active.append(stat.mean(CurrDate["Active"]))
 
-    return Confirmed, Deaths, Recovered, Active
+    return Confirmed, Deaths, Recovered
 def plotGraph(Name):
     # Plots the graph using the inputs and then shows them
     fig0, ax0=plt.subplots(figsize=(10,5))
@@ -72,28 +70,28 @@ while leave!=True:
     #Also showes the UK graph just to allow a comparison
     if Region=='1':
         #Puts the data from the list into reigionList and returns them into these variables
-        Confirmed, Deaths, Recovered, Active=regionList(dayVals)
+        Confirmed, Deaths, Recovered=regionList(dayVals)
         plotGraph("the world")
     elif Region=='2':
-        Confirmed, Deaths, Recovered, Active=regionList(eastMed)
+        Confirmed, Deaths, Recovered=regionList(eastMed)
         plotGraph("Eastern Mediterranean")
     elif Region=='3':
-        Confirmed, Deaths, Recovered, Active=regionList(Euro)
+        Confirmed, Deaths, Recovered=regionList(Euro)
         plotGraph("Europe")
     elif Region=='4':
-        Confirmed, Deaths, Recovered, Active=regionList(Africa)
+        Confirmed, Deaths, Recovered=regionList(Africa)
         plotGraph("Africa")
     elif Region=='5':
-        Confirmed, Deaths, Recovered, Active=regionList(America)
+        Confirmed, Deaths, Recovered=regionList(America)
         plotGraph("Americas")
     elif Region=='6':
-        Confirmed, Deaths, Recovered, Active=regionList(WstPacific)
+        Confirmed, Deaths, Recovered=regionList(WstPacific)
         plotGraph("Western Pacific")
     elif Region=='7':
-        Confirmed, Deaths, Recovered, Active=regionList(SouthEastAsia)
+        Confirmed, Deaths, Recovered=regionList(SouthEastAsia)
         plotGraph("South-East Asia")
     elif Region=='8':
-        Confirmed, Deaths, Recovered, Active=regionList(UK)
+        Confirmed, Deaths, Recovered=regionList(UK)
         plotGraph("the UK")
     elif Region=='Q':
         leave=True
