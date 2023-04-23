@@ -37,7 +37,7 @@ _______________________________________
 
 Download the "country_vaccinations.csv" file and save it in the same directory as the Python script.
 
-Copy and paste the code into a Python IDE or Jupyter Notebook.
+Copy and paste the code into an IDE supporting Python.
 
 Run the code.
 
