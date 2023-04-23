@@ -4,11 +4,8 @@ import matplotlib.pyplot as plt
 from matplotlib import style 
 
 
-leave = False
-
-
-while (leave == False):
-    df =pd.read_csv(r'C:\University\deaths\worldometer_data.csv')
+while True:
+    df =pd.read_csv('Data/worldometer_data.csv')
 
 
 
@@ -255,5 +252,7 @@ while (leave == False):
         # Line to write xlsx table file 
         top10Active.to_excel('top10ActiveXLSX.xlsx', index=False)
 
-    else:
-        leave= False
+    elif Menu =="Q":
+        # close program
+        print("Exited program") 
+        break
