@@ -7,10 +7,10 @@ How to use our code:
 First, download the folders and files.
 Install all nesseccary libraries (if not already installed). They can be found below.
 Then run main.py.
-Now you should have the GUI infront of you. By clicking on the buttons on the right you call our functionalities. Some have a UI in the terminal in order to function so look out for that.
+Now you should have the GUI infront of you. By clicking on the buttons on the right of the GUI you call our functionalities. It may be that you have to wait a few second before the functions makes itself visible. Some have a UI in the terminal in order to function so look out for that.
 That's all, have fun!
 
-If it doesn't work bouble check if the files are in your folder and the paths are correct or if all the nesseccary libraries are installed.
+If it doesn't work double check if the files are in your folder and the paths are correct or if all the nesseccary libraries are installed.
 
 Here is the list of libraries:
 1. customtkinter
